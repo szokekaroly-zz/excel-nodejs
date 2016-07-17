@@ -24,6 +24,6 @@ block content
         tr
           td.rows(class='row_' + i, title='Select row')= i
           - for (var j = 0; j < excel.MaxCol; j++)
-            td.cell(class='col_' + j + ' row_' + i)
-
+            - var colId = String.fromCharCode(65 + i) + (j + 1)
+            td.cell(id=colId, class='col_' + j + ' row_' + i)
   script(src='js/app.js')
