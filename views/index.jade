@@ -13,5 +13,17 @@ block content
       li#remove-selected
         span.fa.fa-minus-circle.fa-lg(title='Remove selection')
         |  Remove
-  table.excel
+  table
+    thead
+      tr
+        th
+        each row, index in header
+          th.cols(class='col_' + index, title='Select column')= row
+    tbody
+      - for (var i = 0; i < excel.MaxRow; i++)
+        tr
+          td.rows(class='row_' + i, title='Select row')= i
+          - for (var j = 0; j < excel.MaxCol; j++)
+            td.cell(class='col_' + j + ' row_' + i)
+
   script(src='js/app.js')
