@@ -2,4 +2,16 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #{title}
+  nav
+    ul
+      li#add-col
+        span.fa.fa-plus-circle.fa-lg(title='Extend the table with new column')
+        |  Add column
+      li#add-row
+        span.fa.fa-plus-circle.fa-lg(title='Extend the table with new row')
+        |  Add row
+      li#remove-selected
+        span.fa.fa-minus-circle.fa-lg(title='Remove selection')
+        |  Remove
+  table.excel
+  script(src='js/app.js')

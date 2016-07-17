@@ -8,7 +8,8 @@ mongoose.Promise = global.Promise;
  * @description Initialize mongoose models
  */
 function initModels() {
-
+    require('../models/excel');
+    require('../models/cells');
 }
 
 /**
