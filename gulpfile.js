@@ -5,12 +5,12 @@ var jshint = require('gulp-jshint');
 gulp.task('default', ['watch']);
 
 gulp.task('jquery', function() {
-    return gulp.src('./bower_components/jquery/dist/jquery.min.js')
-        .pipe(gulp.dest('./public/js/'));
+    return gulp.src('bower_components/jquery/dist/jquery.min.js')
+        .pipe(gulp.dest('public/js/'));
 });
 
 gulp.task('jshint', function() {
-    return gulp.src('./**/*.js')
+    return gulp.src('/**/*.js')
         .pipe(jshint())
         .pipe(jshint.reporter())
         .pipe(jshint.reporter('fail'));        
@@ -19,5 +19,5 @@ gulp.task('jshint', function() {
 gulp.task('build', ['jquery']);
 
 gulp.task('watch', function() {
-    gulp.watch('./**/*.js', ['jshint']);
+    gulp.watch('/**/*.js', ['jshint']);
 });
