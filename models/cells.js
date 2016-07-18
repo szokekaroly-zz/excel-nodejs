@@ -13,4 +13,4 @@ var CellModel = mongoose.model('Cell', CellSchema);
 module.exports = {
     CellSchema: CellSchema,
     CellModel: CellModel
-}
+};

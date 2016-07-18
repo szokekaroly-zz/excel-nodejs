@@ -14,4 +14,4 @@ var ExcelModel = mongoose.model('Excel', ExcelSchema);
 module.exports = {
     ExcelSchema: ExcelSchema,
     ExcelModel: ExcelModel
-}
+};

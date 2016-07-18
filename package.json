@@ -18,5 +18,10 @@
   "repository": {
     "type": "git",
     "url": "git@github.com:szokekaroly/excel-nodejs.git"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-jshint": "^2.0.1",
+    "jshint": "^2.9.2"
   }
 }

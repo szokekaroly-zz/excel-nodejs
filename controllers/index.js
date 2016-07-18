@@ -44,4 +44,4 @@ function index(req, res, next) {
 
 module.exports = {
     index: index
-}
+};

@@ -26,6 +26,6 @@ function init() {
     initModels();
     
     return db;
-};
+}
 
 module.exports = init;
