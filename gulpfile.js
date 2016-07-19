@@ -10,7 +10,7 @@ gulp.task('jquery', function() {
 });
 
 gulp.task('jshint', function() {
-    return gulp.src('/**/*.js')
+    return gulp.src('**/*.js')
         .pipe(jshint())
         .pipe(jshint.reporter())
         .pipe(jshint.reporter('fail'));        
@@ -19,5 +19,5 @@ gulp.task('jshint', function() {
 gulp.task('build', ['jquery']);
 
 gulp.task('watch', function() {
-    gulp.watch('/**/*.js', ['jshint']);
+    gulp.watch('**/*.js', ['jshint']);
 });
