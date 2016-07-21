@@ -26,4 +26,5 @@ block content
           - for (var j = 0; j < excel.MaxCol; j++)
             - var colId = String.fromCharCode(65 + i) + (j + 1)
             td.cell(id=colId, class='col_' + j + ' row_' + i)
+              input(class='c' + i + ' r' + j)
   script(src='js/app.js')

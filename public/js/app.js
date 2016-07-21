@@ -1,74 +1,56 @@
 'use strict';
 $(document).ready(function() {
-    var cell = new Cell(1,1,'alma');
-    cell.Value('körte');
+    $('input').each(function(index, element) {
+        var coord = $(element).parent().attr('id');
+        element.cell = new Cell(coord);
+        element.addEventListener('blur', function(event) {
+            this.cell.value = this.value;
+            this.cell.send();
+        });
+    });
 });
 
-var Cell = function(row, col, value) {
-    var _row;
+/**
+ * Basic excel cell object
+ */
+function Cell(coord) {
+    var _coord = coord;
     var _col;
+    var _row;
     var _value;
-    var _coord;
 
-    var self = this;
-
-    function _propRow(newRow) {
-        if (typeof newRow === 'undefined') {
-            return _row;
-        } else {
-            if (typeof newRow !== 'number'  || newRow < 1) {
-                _row = 1;
-            } else {
-                if (_row > 26) {
-                    _row = 26;
-                } else {
-                    _row = newRow;
-                    self.send(_row);
-                }
-            }
-            _setCoord();
-        }
-    }
-    function _propCol(newCol) {
-        if (typeof newCol === 'undefined') {
-            return _col;
-        } else {
-            if (typeof newCol !== 'number'  || newCol < 1) {
-                _col = 1;
-            } else {
-                if (_col > 26) {
-                    _col = 26;
-                } else {
-                    _col = newCol;
-                    self.send(_col);
-                }
-            }
-            _setCoord();
-        }
-    }
-
-    function _setCoord() {
-        if (_col && _row) {
-            _coord = '' + String.fromCharCode(64 + _col) + _row;
-        }
-    }
-    
     this.getCoord = function() {
         return _coord;
-    }
+    };
 
-    this.Value = function(newValue) {
-        if (typeof newValue === 'undefined') {
+    this.getCol = function() {
+        return _col;
+    };
+
+    this.getRow = function() {
+        return _row;
+    };
+
+    this.value = function(value) {
+        if (! arguments.length) {
             return _value;
         } else {
-            _value = newValue;
-            this.send(_value);
+            _value = value;
         }
     };
 
-    return this;
-};
+    coord = coord.toUpperCase() || 'A1';
+    _col = coord.charCodeAt(0) - 64;
+    _row = parseInt(coord.substring(1));
+    //console.log(coord, _col, _row);
+}
 
-Cell.prototype.send = function(data) {
-    console.log(data);
+Cell.prototype.send = function() {
+    var data = {
+        coord: this.getCoord(), 
+        value: this.value
+    };
+    $.post('/api/update', data, function(data) {
+        console.log('success ajax response:', data);
+    });
 };
